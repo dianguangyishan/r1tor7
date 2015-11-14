@@ -1,0 +1,77 @@
+<!DOC html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="charset=utf-8">
+		<title>
+			图书管理系统
+		</title>
+		<style>
+			body{
+				background:#00bfff;
+				text-align:center;
+			}
+		</style>
+		<style type="text/css">
+		a:link,a:visited{
+		 text-decoration:none;
+		}
+		a:hover{
+		 text-decoration:underline;
+		}
+		a{
+		 color:#000000
+		}
+		table{
+		 width:800;
+		}
+		tr{
+		 height:50;
+		}
+		</style>
+	</head>
+	<body>
+	<div style="width:200px;height:152px;border-style:solid;">
+	{% load staticfiles %}
+	<img src="{% static 'header.jpg' %}" alt="My image"/></div>
+	<section>
+		<table border=3 align=center>
+			<tr align=center>
+				<td>书目名称</td>
+				<td>作者</td>
+				<td>出版社</td>
+				<td>ISBN</td>
+				<td>出版日期</td>
+				<td>价格</td>
+			</tr>
+			{% for book in booklist %}
+			<tr align=center>
+				<td>{{ book.Title }}</td>
+				<td>{{ book.AuthorID.Name }}</td>
+				<td>{{ book.Publisher }}</td>
+				<td>{{ book.ISBN }}</td>
+				<td>{{ book.PublishDate }}</td>
+				<td>{% if book.Price == "" %}未标价{% else %}{{ book.Price }}{% endif %}</td>
+				<td><a href="/modify/?id={{ book.id }}">修改</a>&nbsp;<a href="/delete/?id={{ book.id }}">删除</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</section>
+	<a href="/add">增加</a>
+	<section>
+		<table border=3 align=center>
+			<tr align=center>
+				<td>作者ID</td>
+				<td>作者姓名</td>
+				<td>作者年龄</td>
+				<td>国籍</td>
+			</tr>
+			<tr align=center>
+				<td>{{ author.AuthorID }}</td>
+				<td>{{ author.Name }}</td>
+				<td>{{ author.Age }}</td>
+				<td>{{ author.Country }}</td>
+			</tr>
+		</table>		
+	</section>
+	</body>
+</html>

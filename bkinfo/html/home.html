@@ -1,0 +1,58 @@
+<!DOC html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="charset=utf-8">
+		<title>
+			图书管理系统
+		</title>
+		<style>
+			body{
+				background:#00bfff;
+				text-align:center;
+			}
+		</style>
+		<style type="text/css">
+		a:link,a:visited{
+		 text-decoration:none;
+		}
+		a:hover{
+		 text-decoration:underline;
+		}
+		a{
+		 color:#000000
+		}
+		table{
+		 width:800;
+		}
+		tr{
+		 height:50;
+		}
+		</style>
+	</head>
+	<body>
+	<div style="width:200px;height:152px;border-style:solid;">
+	{% load staticfiles %}
+	<img src="{% static 'header.jpg' %}" alt="My image"/></div>
+	<form method="post">
+	<div><input type="text" name="author"><input type="submit" value="查询"></div>
+	</form>
+	<section>
+		<table border=3 align=center cellspacing=0>
+			<tr align=center>
+				<th>书目名称</th>
+				<th>作者</th>
+				<th>出版社</th>
+				<th>操作</th>
+			</tr>
+			{% for book in booklist %}
+			<tr align=center>
+				<th><a href="/info/?id={{ book.id }}">{{ book.Title }}</a></td>
+				<td>{{ book.AuthorID.Name }}</td>
+				<td>{{ book.Publisher }}</td>
+				<td><a href="/delete/?id={{ book.id }}">删除</a><td>
+			</tr>
+			{% endfor %}
+		</table>
+	</section>
+	<a href="/add">增加</a>
+</html>

@@ -1,0 +1,33 @@
+<!DOC html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="charset=utf-8">
+		<title>
+			数据增展示
+		</title>
+		<style>
+			body{
+				background:#00bfff;
+				text-align:center;
+			}
+		</style>
+	</head>
+	<body>
+	
+	<form method="post">
+		<input type="text" name="title" placeholder="书名" value="{{ book.Title }}"><br>
+		<select name="author">
+			<option value="{{ book.AuthorID.Name }}" selected="selected">{{ book.AuthorID.Name }}</option>
+			{% for author in authorlist %}
+			<option value="{{ author.Name }}">{{ author.Name }}</option>
+			{% endfor %}
+		</select><br>
+		<input type="text" name="publisher" placeholder="出版社" value="{{  book.Publisher }}"><br>
+		<input type="text" name="publishdate" placeholder="出版日期" value="{{ book.PublishDate }}"><br>
+		<input type="text" name="isbn" placeholder="ISBN" value="{{ book.ISBN }}"><br>
+		<input type="text" name="price" placeholder="价格" value="{{ book.Price }}"><br>
+		<input type="submit" name="submit">
+	<form>
+	
+	</body>
+</html>
